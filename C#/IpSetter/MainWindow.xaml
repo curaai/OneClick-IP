@@ -1,0 +1,150 @@
+﻿<Window x:Class="IpSetter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IpSetter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="257.843" Width="312.255">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="AnimatedSwitch" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Background" Value="#FAFAFB" />
+                <Setter Property="BorderBrush" Value="#EAEAEB" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Viewbox Stretch="Uniform">
+                                <Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+                                    <Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5"/>
+                                    <Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5"/>
+                                    <Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0.5,0,0.5"/>
+                                    <Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.3">
+                                        <Ellipse.RenderTransform>
+                                            <TranslateTransform X="0" Y="0" />
+                                        </Ellipse.RenderTransform>
+                                        <Ellipse.BitmapEffect>
+                                            <DropShadowBitmapEffect Softness="0.1" ShadowDepth="0.7" Direction="270" Color="#BBBBBB"/>
+                                        </Ellipse.BitmapEffect>
+                                    </Ellipse>
+                                </Canvas>
+                            </Viewbox>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True" >
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#52D468" Duration="0:0:0.2" />
+                                                <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#41C955" Duration="0:0:0.2" />
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                    <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                    <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FAFAFB" Duration="0:0:0.2" />
+                                                <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#EAEAEB" Duration="0:0:0.2" />
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                    <SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+                                                    <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Height" Value="25" />
+                    <Setter Property="Width" Value="45"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <TabControl  HorizontalAlignment="Left" Width="304">
+                <TabItem Header="Network Interface Setting">
+                    <Grid Height="202">
+                        <Button Name="Save" Click="SaveButtonClick" VerticalAlignment="Bottom" 
+                        HorizontalAlignment="Center" Margin="0, 15" 
+                        Height="24" Width="36">
+                            Save
+                        </Button>
+
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Margin="11.5, 0, 0, 5" >
+
+                                <Label Margin="0,0, 10, 0">IP address</Label>
+
+                                <TextBox x:Name="ipFirstOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="ipSecondOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="ipThirdOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="ipFourthOctet" Margin="0,0, 10, 0"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" >
+                                <Label Margin="0,0, 10, 0">SubnetMask</Label>
+
+                                <TextBox x:Name="subnetFirstOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="subnetSecondOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="subnetThirdOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="subnetFourthOctet" Margin="0,0, 10, 0"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,5" >
+                                <Label Margin="0, 0, 10, 0">Gateway</Label>
+
+                                <TextBox x:Name="gateFirstOctet" Margin="11,0, 10, 0"/>
+                                <TextBox x:Name="gateSecondOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="gateThirdOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="gateFourthOctet" Margin="0,0, 10, 0"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="5,0,0,5" >
+                                <Label Margin="0, 0, 10, 0">DNS Server</Label>
+
+                                <TextBox x:Name="dnsFirstOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="dnsSecondOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="dnsThirdOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="dnsFourthOctet" Margin="0,0, 10, 0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5,0,0,10" >
+                                <Label Margin="0, 0, 10, 0">DNS Sub</Label>
+
+                                <TextBox x:Name="dnsSubFirstOctet" Margin="13,0, 10, 0"/>
+                                <TextBox x:Name="dnsSubSecondOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="dnsSubThirdOctet" Margin="0,0, 10, 0"/>
+                                <TextBox x:Name="dnsSubFourthOctet" Margin="0,0, 10, 0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Select Dynamic/Static">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,-1,0">
+                            <ToggleButton Name="toggle" Style="{StaticResource AnimatedSwitch}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="82" Margin="20,0,60,0" Width="197"
+                                          Checked="toggle_Checked" Unchecked="toggle_Unchecked"/>
+                        </StackPanel>
+                        <DockPanel>
+                            <Label FontSize="17" DockPanel.Dock="Left">Static</Label>
+                            <Label FontSize="17" HorizontalAlignment="Right" Width="83" Content="Dynamic"/>
+                        </DockPanel>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+
+    </Grid>
+</Window>

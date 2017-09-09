@@ -1,0 +1,15 @@
+c:\users\dsm2016\source\repos\IpSetter\IpSetter\obj\Debug\IpSetter.csprojResolveAssemblyReference.cache
+c:\users\dsm2016\source\repos\IpSetter\IpSetter\obj\Debug\MainWindow.g.cs
+c:\users\dsm2016\source\repos\IpSetter\IpSetter\obj\Debug\App.g.cs
+c:\users\dsm2016\source\repos\IpSetter\IpSetter\obj\Debug\IpSetter_MarkupCompile.cache
+c:\users\dsm2016\source\repos\IpSetter\IpSetter\obj\Debug\IpSetter_MarkupCompile.lref
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\bin\Debug\IpSetter.exe.config
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\bin\Debug\IpSetter.exe
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\bin\Debug\IpSetter.pdb
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\obj\Debug\MainWindow.baml
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\obj\Debug\IpSetter.g.resources
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\obj\Debug\IpSetter.Properties.Resources.resources
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\obj\Debug\IpSetter.csproj.GenerateResource.Cache
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\obj\Debug\IpSetter.csproj.CoreCompileInputs.cache
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\obj\Debug\IpSetter.exe
+C:\Users\dsm2016\source\repos\IPSetter\IpSetter\obj\Debug\IpSetter.pdb

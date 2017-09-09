@@ -20,8 +20,9 @@ def set_dynamic_ip():
     nic.EnableDHCP()
 
 if __name__ == '__main__':
-    ip = []
-    gateway = []
-    dns_servers = []
+    ip = ['10.156.146.155']
+    gateway = ['10.156.146.1']
+    dns_servers = ['210.111.226.7', '210.111.226.8']
 
-    set_static_ip(ip, gateway, dns_servers)
+    # set_static_ip(ip, gateway, dns_servers)
+    set_dynamic_ip()
