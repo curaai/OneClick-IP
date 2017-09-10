@@ -51,6 +51,7 @@ namespace IpSetter
                         confDict[key] = appSettings[key];
                     }
                     isDynamic = confDict["isDynamic"] == "true" ? true : false;
+                    // toggle.Checked = isDynamic;
                 }
                 return new IpConf(confDict["ip"], confDict["subnet"], confDict["gateway"], confDict["dns"], confDict["dnsSub"], isDynamic);
 
@@ -96,8 +97,7 @@ namespace IpSetter
             octetList[2] = this.dnsSubThirdOctet.Text;
             octetList[3] = this.dnsSubFourthOctet.Text;
             dnsSub = octetList.Aggregate((cur, next) => cur + "." + next);
-
-            MessageBox.Show(dnsSub, "Confirmation");
+            
 
             SaveConfig(ip, subnet, gateway, dns, dnsSub);
         }
@@ -108,19 +108,33 @@ namespace IpSetter
             {
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-                config.AppSettings.Settings["ip"].Value = ip;
-                config.AppSettings.Settings["subnet"].Value = subnet;
-                config.AppSettings.Settings["gateway"].Value = gateway;
-                config.AppSettings.Settings["dns"].Value = dns;
-                config.AppSettings.Settings["dnsSub"].Value = dnsSub;
-                config.AppSettings.Settings["isDynamic"].Value = GetLocalIpAllocationMode();
+                if (config.AppSettings.Settings["ip"] == null)
+                {
+                    config.AppSettings.Settings.Add("ip", ip);
+                    config.AppSettings.Settings.Add("subnet", subnet);
+                    config.AppSettings.Settings.Add("gateway", gateway);
+                    config.AppSettings.Settings.Add("dns", dns);
+                    config.AppSettings.Settings.Add("dnsSub", dnsSub);
+                    config.AppSettings.Settings.Add("isDynamic", GetLocalIpAllocationMode());
+
+                    configuration.Setting(ip, subnet, gateway, dns, dnsSub, GetLocalIpAllocationMode() == "true" ? true : false );
+                }
+                else
+                {
+                    config.AppSettings.Settings["ip"].Value = ip;
+                    config.AppSettings.Settings["subnet"].Value = subnet;
+                    config.AppSettings.Settings["gateway"].Value = gateway;
+                    config.AppSettings.Settings["dns"].Value = dns;
+                    config.AppSettings.Settings["dnsSub"].Value = dnsSub;
+                    config.AppSettings.Settings["isDynamic"].Value = GetLocalIpAllocationMode();
+                }
 
                 config.Save();
                 ConfigurationManager.RefreshSection("appSettings");
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Confirmation");
+                MessageBox.Show(ex.ToString() + "Confirmation");
             }
         }
 

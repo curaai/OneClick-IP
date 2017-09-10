@@ -24,18 +24,23 @@ namespace IpSetter
 
         public IpConf(string ip_address, string subnet_mask, string gateway, string dns, string dnsSub, bool isDynamic)
         {
-            this.ip_address = ip_address;
-            this.subnet_mask = subnet_mask;
-            this.gateway = gateway;
-            this.dns = dns;
-            this.dnsSub = dnsSub;
-            this.isDynamic = isDynamic;
+            Setting(ip_address, subnet_mask, gateway, dns, dnsSub, isDynamic);
         }
 
         // if configed return true else return False
         public bool IsConfiged()
         {
             return this.ip_address != null;
+        }
+
+        public void Setting(string ip_address, string subnet_mask, string gateway, string dns, string dnsSub, bool isDynamic)
+        {
+            this.ip_address = ip_address;
+            this.subnet_mask = subnet_mask;
+            this.gateway = gateway;
+            this.dns = dns;
+            this.dnsSub = dnsSub;
+            this.isDynamic = isDynamic;
         }
 
         public void setIP()
